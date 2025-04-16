@@ -6,7 +6,7 @@ from google.cloud import dialogflow_v2 as dialogflow
 app = Flask(__name__)
 
 # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable to the path of your Dialogflow service account key
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "{
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = '''{
   "type": "service_account",
   "project_id": "college-xolw",
   "private_key_id": "7e7511f792cd9d186ca7ba859c6965e3a81caf78",
@@ -18,7 +18,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "{
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dialogflow-service-account%40college-xolw.iam.gserviceaccount.com",
   "universe_domain": "googleapis.com"
-}"
+}'''
 
 
 # Initialize Dialogflow Session Client
