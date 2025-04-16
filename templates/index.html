@@ -1,1 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #chat-container {
+            width: 400px;
+            max-width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+        #chat-box {
+            overflow-y: auto;
+            flex: 1;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .user-message, .bot-message {
+            max-width: 80%;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #4CAF50;
+            color: white;
+            align-self: flex-end; /* User's message on the right side */
+            text-align: right;
+	    margin-left: 40%
+        }
+        .bot-message {
+            background-color: #f1f1f1;
+            color: #333;
+            align-self: flex-start; /* Bot's message on the left side */
+            text-align: left;
+        }
+        .option-message {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            width: auto;
+            display: inline-block;
+        }
+        .option-message:hover {
+            background-color: #0056b3;
+        }
+        .user-option {
+            background-color: #28a745; /* Green color for user's selected option */
+        }
+        #end-conversation {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        #end-conversation:hover {
+            background-color: #e60000;
+        }
+        #user-info-form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        #user-info-form input {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <!-- User info form that appears on first load -->
+        <div id="user-info-form">
+            <h3>Please enter your information:</h3>
+            <input type="text" id="first-name" placeholder="First Name" required />
+            <input type="text" id="last-name" placeholder="Last Name" required />
+            <input type="email" id="email" placeholder="Email Address" required />
+            <button id="start-chat-button" onclick="startChat()">Start Chat</button>
+        </div>
+
+        <!-- Chatbox where conversations will happen -->
+        <div id="chat-box"></div>
+
+        <!-- End Conversation Button -->
+        <button id="end-conversation" onclick="endConversation()">End Conversation</button>
+    </div>
+
+    <script>
+        let userFirstName = '';
+        let userLastName = '';
+        let userEmail = '';
+        let conversationStarted = false;
+
+        const chatBox = document.getElementById('chat-box');
+        const userInfoForm = document.getElementById('user-info-form');
+        const startChatButton = document.getElementById('start-chat-button');
+        const endConversationButton = document.getElementById('end-conversation');
+
+        // Function to start the chat by saving the user info
+        function startChat() {
+            // Get the user inputs
+            userFirstName = document.getElementById('first-name').value;
+            userLastName = document.getElementById('last-name').value;
+            userEmail = document.getElementById('email').value;
+
+            // Check if user has entered all details
+            if (!userFirstName || !userLastName || !userEmail) {
+                alert("Please fill in all the fields.");
+                return;
+            }
+
+            // Hide the user info form and display the chat
+            userInfoForm.style.display = 'none';
+            conversationStarted = true;
+
+            // Display a welcome message to the user
+            displayMessage(`Welcome, ${userFirstName}! How can I assist you today?`, 'bot-message');
+
+            // Provide clickable options after greeting
+            setTimeout(() => {
+                displayOption('Does the college have a football team?');
+                displayOption('Does it offer a Computer Science major?');
+                displayOption('What is the in-state tuition?');
+                displayOption('Does it provide on-campus housing?');
+            }, 1000);
+        }
+
+        // Function to send user input and display the conversation
+        function displayOption(optionText) {
+            const optionElement = document.createElement('div');
+            optionElement.classList.add('option-message');
+            optionElement.textContent = optionText;
+            optionElement.onclick = () => sendPredefinedMessage(optionText);
+            chatBox.appendChild(optionElement);
+            chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the bottom
+        }
+
+        // Function to send predefined message and display the conversation
+        function sendPredefinedMessage(question) {
+            // Display the user's message (predefined question on right side)
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('user-message');
+            userMessage.classList.add('user-option');  // Apply the green style
+            userMessage.textContent = question;
+            chatBox.appendChild(userMessage);
+
+            // Send the selected question to the backend (Dialogflow)
+            fetch("http://127.0.0.1:5000/webhook", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "queryResult": {
+                        "queryText": question
+                    }
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the bot's response (on left side)
+                const botMessage = document.createElement('div');
+                botMessage.classList.add('bot-message');
+                botMessage.textContent = data.fulfillmentText;
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the bottom
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Something went wrong!');
+            });
+        }
+
+        // Function to display messages in chat
+        function displayMessage(message, className) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add(className);
+            messageElement.textContent = message;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the bottom
+        }
+
+        // Function to end the conversation and display user info and creator info
+        function endConversation() {
+            // Display a message indicating that the conversation has ended
+            displayMessage("The conversation has ended. Thank you!", 'bot-message');
+            
+            // Display user info and creator info
+            displayMessage(`User's Info: First Name: ${userFirstName}, Last Name: ${userLastName}, Email Address: ${userEmail}`, 'bot-message');
+            displayMessage("Chatbot creator's Info: First Name: Han Chinh Khai, Last Name: Nguyen, School Email Address: nguye2kh@mail.uc.edu", 'bot-message');
+            
+            // Optionally, disable the predefined question buttons and end conversation button
+            const buttons = document.querySelectorAll('.option-message');
+            buttons.forEach(button => button.disabled = true);
+            endConversationButton.disabled = true;
+        }
+    </script>
+</body>
+</html>
+
 
