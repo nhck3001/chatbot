@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "college-xolw",
+  "private_key_id": "fe4d0cdaf53df34256f2ab114af22d13d48a740d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDYM7PpixDRxpMw\n85/yJhKvQjATguEZSzRfUS2jLpO9BBxherUMVk0U21XoFYvBmvxAsDuF+xCK3+sc\nhxNUirTJLbFZQzjnEq7IsHHuABqdTUhRxzN8Tx8iPz20IFIiAgIXzprjRb/FpZYX\nZKK6ft1DOzh93/w4sZR/h8aD6FOgBiv7B+RjH0H12XV4eYjRnvLu9faoRUwxWM6S\nVi/Qy3x57WnPZoM+oHr4i3XXKGgwemhhx2ZXTLQEfSwZ1hpbLOD+rmfWNqfy3PxE\nAmjIPIlr8PiU83v9F+3e04J2Ne/nY3j4wKOyYQIkkt0hdVmhF5MHC9oVH+gul6/6\nD+lCV67zAgMBAAECggEAV5TmQmrb5ubm1JM0jX7/3bBV0mmX70uoTR6Q+sRRA+Zo\n6tIvCm7hbdwGWmxz/3tdyYS6sCVLB776usU7Pumrn72bVNom8HCAjnrvxCaVoXhf\nngUwpaBVr+VnhRL8wpsGpwdCdmPYcmQIP7S8OQlQb75LPa6hOYQycFEbyW6xhaaL\ntcdkRgskU3w5/LM9eJMbtHz6Ge2dSj3JpffPjwFFqxalDOpSPXY3kJXR3AVtKwAZ\ny09hx7jpPnew9EnjHJOYQEc+M+OPXZC3GdmtnnJ8b5FvA0Nxa+dw8+zjXhx7sG8a\nOVi2rHtHkcrlY9bXNHer788l0z61LMFLsXnVueH4sQKBgQDyIAVgqNTfAfx0sTV8\nh2aUF2/vMzrcwZa7Z3mtH4QnudnRRSCSi98bLUHBSVghf1ufxm+dNqDNvsHkIz+x\nnbBxuApSI7x3SG1Nc/nZWCk2oPVlhtzNHzKZSpg1W2ojnrECMJ1U+BGwUGDJ6s2s\n7BPLksst55+MMMLmchb72ySQYwKBgQDkl2OiuFV7VAPoKoB0BzeIn3a65k/TvJ6a\n641rrBjoxvVcGBcOR4iQVSpkHGwGD+uPAINCT8Y9K0SJVhhxOx/AG3rrjWc+l+5b\nmGHvKi8YeSB4uAXZk25hCem9eyXOHeyKZoGB1RVVJTHioFeGGrGXGdAKFGVwB4vp\nrWj1nxeEMQKBgA5luwwhXe8Y1iM2OmD6SC48KorFuBVSaZ0hLQoPWrNmCL655pLw\nQEcEbOmKa/Qp94/Lo+1sRymU00C2m93663gHoo151IYfR2iYod27sU+vSIhN+ak0\n1rRozB44HlqZ4BqqO2DHE34xeV/oV2yV6SNsyiojoMgcSiqb1CQLxuPTAoGALXc6\n9wNo5SW5vTSu5eUFk6P77oKegAO1HCUbtL2/GpVv+chE1a8+p055Jv5MMgx6kq/M\na6UITeRMNnCsXeEfmIsesLkoPtfjLc6qM/KU+W4mGjyn1TWwr5ZUKj7TLyLeiEyJ\nF7S1EIFcYbH4lpC6n84fhdG2t0iY+HpoNOpWuBECgYEAv9/sW19pQHFkrfBmeKhl\n7vwltXqL854eAPmp1Qsk5bFx/19QWXGFOn08m/R/dGC1tJ3Esf1efhuHtP4OEFjf\niEY1jpMT0VlS9vcYg0B2Z0lNiQOeRq6jgyGN6bbWxTxnXTqFuPB5clXGOXPsYMf+\n+I4gjmmUlTqQZLBvrFZm91o=\n-----END PRIVATE KEY-----\n",
+  "client_email": "dialogflow-service-account@college-xolw.iam.gserviceaccount.com",
+  "client_id": "107056422019067360243",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dialogflow-service-account%40college-xolw.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
