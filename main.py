@@ -6,7 +6,7 @@ from google.cloud import dialogflow_v2 as dialogflow
 app = Flask(__name__)
 
 # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable to the path of your Dialogflow service account key
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/etc/secrets/GOOGLE_APPLICATION_CREDENTIALS"
 
 
 
