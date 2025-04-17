@@ -41,7 +41,7 @@ def webhook():
 
     return jsonify({'fulfillmentText': response})
 # Get the port from the environment variable, or default to 5000 for local development
-port = process.env.PORT || 4000;
+port = process.env.PORT
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=port)
