@@ -8,8 +8,7 @@ app = Flask(__name__)
 
 # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable to the path of your Dialogflow service account key
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/etc/secrets/GOOGLE_APPLICATION_CREDENTIALS"
-CORS(app)  # This will allow all domains to access your API (can be restricted if needed)
-
+CORS(app, origins=["https://chatbot-6uf4.onrender.com"])
 
 
 
