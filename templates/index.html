@@ -175,7 +175,7 @@
             chatBox.appendChild(userMessage);
 
             // Send the selected question to the backend (Dialogflow)
-            fetch("http://127.0.0.1:5000/webhook", {
+            fetch("https://chatbot-6uf4.onrender.com/webhook", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
