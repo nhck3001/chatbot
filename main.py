@@ -1,12 +1,14 @@
 import os
 from flask import Flask, request, jsonify, render_template
 from google.cloud import dialogflow_v2 as dialogflow
+from flask_cors import CORS  # Importing CORS
 
 # Initialize Flask app
 app = Flask(__name__)
 
 # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable to the path of your Dialogflow service account key
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/etc/secrets/GOOGLE_APPLICATION_CREDENTIALS"
+CORS(app)  # This will allow all domains to access your API (can be restricted if needed)
 
 
 
