@@ -3,12 +3,10 @@ from flask import Flask, request, jsonify, render_template
 from google.cloud import dialogflow_v2 as dialogflow
 from flask_cors import CORS  # Importing CORS
 
-# Initialize Flask app
-app = Flask(__name__)
 
 # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable to the path of your Dialogflow service account key
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/etc/secrets/GOOGLE_APPLICATION_CREDENTIALS"
-CORS(app, origins=["https://chatbot-6uf4.onrender.com"])
+
 
 
 
@@ -25,7 +23,9 @@ def detect_intent_texts(project_id, session_id, text, language_code='en'):
     response = session_client.detect_intent(request={"session": session, "query_input": query_input})
 
     return response.query_result.fulfillment_text
-
+# Initialize Flask app
+app = Flask(__name__)
+CORS(app)
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -42,7 +42,7 @@ def webhook():
 
     return jsonify({'fulfillmentText': response})
 # Get the port from the environment variable, or default to 5000 for local development
-port = int(os.environ.get("PORT", 4000))
+port = int(os.environ.get("PORT", 5000))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=port)
